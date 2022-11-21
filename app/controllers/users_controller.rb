@@ -18,4 +18,15 @@ class UsersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def index 
+    @users = User.all 
+    render template: "users/index"
+  end
+
+  def show 
+    @user = User.find_by(id: params[:id])
+    render template: "users/show"
+  end
+
 end
