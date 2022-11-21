@@ -19,14 +19,37 @@ class UsersController < ApplicationController
     end
   end
 
-  def index 
-    @users = User.all 
+  def index
+    @users = User.all
     render template: "users/index"
   end
 
-  def show 
+  def show
     @user = User.find_by(id: params[:id])
     render template: "users/show"
   end
 
+  def edit
+    @user = User.find_by(id: params[:id])
+    render template: "users/edit"
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+    @user.name = params[:user][:name]
+    @user.email = params[:user][:email]
+    @user.image = params[:user][:image]
+    if @user.save
+      render json: { message: "User created successfully" }, status: :created
+    else
+      render json: { errors: @user.errors.full_messages }, status: :bad_request
+    end
+    redirect_to "/users"
+  end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to "/users", status: :see_other
+  end
 end

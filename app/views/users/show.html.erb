@@ -3,3 +3,5 @@
 <p>email: <%= @user.email %></p>
 <p>image: <%= @user.image %></p>
 <a href="/users">Back to all users</a>
+<%= link_to "Edit user", edit_user_path(@user) %>
+<%= link_to "Destroy user", user_path(@user), data: {turbo_method: :delete} %>
