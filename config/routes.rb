@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get "relationships/index"
-  get "relationships/show"
-  get "relationships/new"
-  get "relationships/edit"
   resources :users
   root "users#index"
 
@@ -12,4 +8,7 @@ Rails.application.routes.draw do
 
   post "/users/:id/follow", to: "users#follow", as: "follow_user"
   post "/users/:id/unfollow", to: "users#unfollow", as: "unfollow_user"
+
+  # get "/users/:id/followers" => "users#follow"
+  # get "/users/:id/followees" => "users#"
 end

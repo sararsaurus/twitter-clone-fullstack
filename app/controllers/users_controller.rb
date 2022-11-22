@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find_by(params[:id])
+    @user = User.find_by(id: params[:id])
     current_user.followees << @user
     redirect_back(fallback_location: user_path(@user))
   end
@@ -63,5 +63,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     current_user.followed_users.find_by(followee_id: @user.id).destroy
     redirect_back(fallback_location: user_path(@user))
+  end
+
+  def followers
+    @user = User.find_by(id: params[:id])
+    render @user.followers
+  end
+
+  def followees
+    @user = User.find_by(id: params[:id])
+    render @user.followees
   end
 end
