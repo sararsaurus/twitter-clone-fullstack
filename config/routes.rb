@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
-  root "users#index"
+  resources :tweets, except: [:edit, :update]
+  root "tweets#index"
 
   get "/login" => "sessions#new"
   post "/sessions" => "sessions#create"
