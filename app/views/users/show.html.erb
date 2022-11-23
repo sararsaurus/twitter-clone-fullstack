@@ -17,6 +17,12 @@
 <p><%=followee.name%></p>
 <% end %>
 
+<h3>Followee tweets</h3>
+<% @user.followees.each do |followee|%>
+<p><%=followee.name%></p>
+<p><%=followee.tweets.text%></p>
+<% end %>
+
 <a href="/users">Back to all users</a>
 <%= link_to "Edit user", edit_user_path(@user) %>
 <%= link_to "Destroy user", user_path(@user), data: {turbo_method: :delete} %>

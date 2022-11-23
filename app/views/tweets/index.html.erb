@@ -1,0 +1,6 @@
+<h1>Tweets</h1>
+<% @tweets.each do |tweet| %>
+  <h2><%= @tweet.user %></h2>
+  <p>text: <%= tweet.text %></p>
+  <%= link_to "User", user %>
+<% end %>
